@@ -4,44 +4,19 @@ fn main() {
     'outerloop: loop {
         message();
 
-        let mut option = String::new();
-        io::stdin()
-            .read_line(&mut option)
-            .expect("Failed to accept option");
+        let option = read_user_input("Option");
 
         match option.trim() {
-            "1" => loop {
-                println!("Enter the celcius value:");
-
-                let mut cel = String::new();
-
-                io::stdin()
-                    .read_line(&mut cel)
-                    .expect("Failed to get cel value");
-
-                let cel: i32 = match cel.trim().parse() {
-                    Ok(num) => num,
-                    Err(_) => continue,
-                };
-                let farvalue = (cel as f64) * 9.0 / 5.0 + 32.0;
-                println!("This is the farcius value: {farvalue}");
+            "1" => {
+                let cel: i32 = read_int_until_valid("Celsius");
+                let far_value = convert_to_farenheit(cel as f64);
+                println!("This is the Fahrenheit value: {far_value}");
                 break 'outerloop;
             },
-            "2" => loop {
-                println!("Enter the farenhiet value:");
-                let mut far = String::new();
-
-                io::stdin()
-                    .read_line(&mut far)
-                    .expect("Failed to get far value");
-
-                let far: i32 = match far.trim().parse() {
-                    Ok(num) => num,
-                    Err(_) => continue,
-                };
-
-                let celvalue = (far as f64 - 32.0) * 5.0 / 9.0;
-                println!("This is the celcius value: {celvalue}");
+            "2" => {
+                let far = read_int_until_valid("Fahrenheit");
+                let cel_value = convert_to_celsius(far as f64);
+                println!("This is the Celsius value: {cel_value}");
                 break 'outerloop;
             },
             _ => {
@@ -54,6 +29,44 @@ fn main() {
 fn message() {
     println!("What do you want to convert?");
     println!(
-        "Select 1 to convert from farenheit to calcius.\nSelect 2 to convert from celcius to farenheit."
+        "Select 1 to convert from fahrenheit to celsius.\nSelect 2 to convert from celsius to fahrenheit."
     );
+}
+
+fn read_user_input(unit: &str) -> String {
+    println!("Enter the {unit} value:");
+
+    let mut input = String::new();
+
+    io::stdin()
+        .read_line(&mut input)
+        .expect(&format!("Failed to get {unit} value"));
+
+    input
+}
+
+fn parse_input_to_int(input: &str)-> Option<i32> {
+    match input.trim().parse() {
+        Ok(num) => Some(num),
+        Err(_) => None,
+    }
+}
+
+fn convert_to_farenheit(cel_val: f64)-> f64 {
+    cel_val * 9.0 / 5.0 + 32.0
+}
+
+fn convert_to_celsius(far_val: f64)-> f64 {
+  (far_val - 32.0) * 5.0 / 9.0  
+}
+
+fn read_int_until_valid(unit: &str)-> i32 {
+    loop {
+        let value = read_user_input(unit);
+
+        if let Some(num) = parse_input_to_int(&value) {
+            return num;
+        }
+        println!("Invalid number, try again.");
+    }
 }
