@@ -1,114 +1,63 @@
 # Rust Temperature Converter 🌡️
 
-A simple temperature conversion program written in **Rust** that runs in the terminal.
-The program allows users to convert temperatures between **Celsius and Fahrenheit** using a menu-driven interface with proper input validation.
-
----
+A simple terminal-based temperature converter written in Rust. Convert between Celsius and Fahrenheit with ease, and the program allows you to continue converting multiple times.
 
 ## Features
 
-* Convert **Celsius → Fahrenheit**
-* Convert **Fahrenheit → Celsius**
-* Menu-based user interaction
-* Handles invalid menu input
-* Handles invalid numeric input safely
-* Uses floating-point arithmetic for accurate results
-* Beginner-friendly Rust code
-
----
+* Convert Celsius to Fahrenheit and vice versa.
+* Input validation with floating-point support.
+* Continuous conversions until you choose to exit.
+* Nicely formatted output with 2 decimal precision.
 
 ## Installation & Running
 
-### Prerequisites
-
-Make sure you have **Rust** installed.
-
-Check by running:
-
-```bash
-rustc --version
-```
-
-If Rust is not installed, download it from:
-[https://www.rust-lang.org/tools/install](https://www.rust-lang.org/tools/install)
-
----
-
-### Clone and Run
+1. Make sure you have Rust installed.
+2. Clone this repository and navigate into it:
 
 ```bash
 git clone https://github.com/your-username/rust-temperature-converter.git
 cd rust-temperature-converter
+```
+
+3. Build and run the program with Cargo:
+
+```bash
 cargo run
 ```
 
-This command compiles the program and runs it in your terminal.
-
----
+This will compile and start the converter in your terminal.
 
 ## How to Use
 
-1. Run the program.
-2. Choose an option from the menu:
+1. After running the program, you'll be asked to choose an option:
 
-   * `1` → Convert from **Celsius to Fahrenheit**
-   * `2` → Convert from **Fahrenheit to Celsius**
-3. Enter the temperature value when prompted.
-4. The converted temperature will be displayed.
-5. The program exits after a successful conversion.
-
----
+   * Enter `1` to convert Celsius to Fahrenheit.
+   * Enter `2` to convert Fahrenheit to Celsius.
+2. Input the temperature value you want to convert.
+3. The program will display the converted value with 2 decimal precision.
+4. You'll be asked if you want to continue. Enter `Y` for yes or `N` for no.
 
 ## Example
 
-```text
+```
 Welcome to the temperature converter.
 What do you want to convert?
-Select 1 to convert from farenheit to calcius.
-Select 2 to convert from celcius to farenheit.
-
-1
-Enter the celcius value:
-100
-This is the farcius value: 212
+Select 1 to convert from Fahrenheit to Celsius.
+Select 2 to convert from Celsius to Fahrenheit.
+Enter Option value: 1
+Enter the Celsius value: 25
+This is the Fahrenheit value: 77.00°F
+Do you want to continue? (Y/N) N
 ```
-
-```text
-2
-Enter the farenhiet value:
-32
-This is the celcius value: 0
-```
-
----
-
-## Learning Goals
-
-This project demonstrates:
-
-* Reading user input from the terminal
-* Using `match` statements in Rust
-* Handling errors with `Result`
-* Loop control using labeled loops
-* Converting between numeric types
-* Floating-point arithmetic in Rust
-
----
 
 ## Contributing
 
-Contributions are welcome!
-If you’d like to improve this project, feel free to fork the repository and submit a pull request.
+Feel free to fork the repository and submit improvements, such as:
 
-Possible improvements:
-
-* Allow multiple conversions per run
-* Add support for Kelvin
-* Improve user interface messages
-* Add unit tests
-
----
+* Adding Kelvin conversion.
+* Implementing more input error handling.
+* Supporting batch conversions.
 
 ## License
 
-This project is licensed under the **MIT License**.
+This project is licensed under the MIT License.
